@@ -1,0 +1,164 @@
+﻿// Basic Formatting
+////////////////////////////////////////////////
+
+$purp: #6c38de;
+$lightpurp: #ac8dff;
+
+// Reset
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    transition: all 0.25s cubic-bezier(.37,0,.45,.99);
+    &:before, &:after
+
+{
+    box-sizing: inherit;
+}
+
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+// Defualt Styling
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Fira Sans", "Helvetica Neue", sans-serif;
+    line-height: 1.75;
+    background-color: #fafafa;
+}
+
+@keyframes driving {
+    0% {
+        transform: translateY(-650px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+// Demo Styles
+// Generic Hero
+.hero {
+    &__title
+
+{
+    padding: 3em 2rem 16rem;
+    text-align: center;
+    color: darken($purp, 50%);
+    position: relative;
+    z-index: 0001;
+}
+
+}
+
+// GPS Hero
+.gps-bg {
+    background-color: $lightpurp;
+    position: relative;
+    perspective: 500px;
+    overflow: hidden;
+    &:after
+
+{
+    // Angled bottom content: '';
+    background-color: #fafafa;
+    position: absolute;
+    width: 200%;
+    height: 5em;
+    bottom: 0;
+    transform: skewY(-2deg);
+}
+
+// The nuts and bolts of making this work
+&__guts {
+    position: absolute;
+    transform: rotateX(45deg);
+    width: calc(100% + 1000px);
+    // This makes extra space to overflow the edges with filled map height: 100%;
+    left: -500px;
+    // Re-centers the container
+}
+
+&__bg {
+    height: 1300px;
+    background-image: url(http://www.rastrac.com/hubfs/roads.svg);
+    background-position: 50%;
+    background-size: 25%;
+    position: absolute;
+    top: -162px;
+    // Hide the empty top reset by moving the object up width: 100%;
+    transform: translateY(-650px);
+    animation: driving 10000ms linear 0ms infinite;
+}
+
+&__route {
+    width: 2em;
+    background-color: #fff;
+    position: absolute;
+    top: -162px;
+    bottom: -162px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 13px 5px rgba(darken($purp, 30%), 0.25);
+    &:after
+
+{
+    content: '';
+    width: 60%;
+    background-color: $purp;
+    position: absolute;
+    top: 0;
+    bottom: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+}
+
+&__fade {
+    // The fade at the top helps hide any crimes (it's pretty seamless without it though)
+		background-image: linear-gradient( to bottom,  $lightpurp 10%, rgba($lightpurp, 0) 100%);
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 60%;
+		z-index: 1;
+}
+
+&__marker {
+    height: 6em;
+    width: 6em;
+    background-color: #fff;
+    // 3D lip border:
+
+{
+    right: 1px solid #ddd;
+    bottom: 3px solid #ddd;
+    left: 1px solid #ddd;
+    radius: 100%;
+}
+
+position: absolute;
+top: 60%;
+left: 50%;
+transform: translateX(-50%);
+box-shadow: 0 0.125em 10px 3px rgba(darken($purp, 30%), 0.25);
+&:after {
+    // Arrow content: '';
+    border-left: 1.5em solid transparent;
+    border-right: 1.5em solid transparent;
+    border-bottom: 3em solid $purp;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+}
+}
+}
